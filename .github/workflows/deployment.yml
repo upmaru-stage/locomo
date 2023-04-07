@@ -40,8 +40,8 @@ jobs:
           command: 'create_deployment'
           archive: 'packages.zip'
         env:
-          WORKFLOW_REF: ${{ github.event.workflow_run.head_branch }}
-          WORKFLOW_SHA: ${{ github.event.workflow_run.head_sha }}
+          WORKFLOW_REF: ${{ github.ref }}
+          WORKFLOW_SHA: ${{ github.sha }}
           INSTELLAR_ENDPOINT: https://staging-web.instellar.app
           INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
           INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}

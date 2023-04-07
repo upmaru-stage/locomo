@@ -12,6 +12,7 @@ dependencies:
     - ca-certificates
     - s6
     - ruby
+    - ruby-bundler
     - locomo-openrc
 
 stack: alpine/3.17

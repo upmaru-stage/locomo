@@ -16,7 +16,7 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destination: '*'
+  destination: '..'
   command: |
     export RAILS_ENV=prod
 
@@ -25,7 +25,7 @@ build:
     
     bundle install
     
-    bin/rails assets:precompile
+    bundle exec rails assets:precompile
 
 run: 
   name: locomo

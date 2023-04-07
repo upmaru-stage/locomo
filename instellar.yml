@@ -20,12 +20,12 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destination: '*'
+  destinations: 
+    - '*'
+    - .bundle
   command: |
     bundle config set deployment 'true'
     bundle config set without 'development test'
-
-    ls -la
     
     bundle install
     

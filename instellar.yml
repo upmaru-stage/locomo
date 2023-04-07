@@ -22,7 +22,8 @@ build:
     rails assets:precompile
 
 run: 
-  name: rails
+  name: locomo
+  binary: rails
   start: 
     call: 'start'
   stop:

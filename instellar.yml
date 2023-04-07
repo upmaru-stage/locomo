@@ -3,6 +3,7 @@ dependencies:
     - ruby
     - ruby-bundler
     - ruby-dev
+    - ruby-tzinfo
     - libpq-dev
   runtime:
     - bash

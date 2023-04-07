@@ -29,7 +29,7 @@ build:
     
     bundle install
     
-    RAILS_ENV=production bundle exec rails assets:precompile
+    bundle exec rails assets:precompile
 
 run: 
   name: locomo

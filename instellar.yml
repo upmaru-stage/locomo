@@ -13,9 +13,11 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destination: 'app'
+  destination: '*'
   command: |
     export RAILS_ENV=prod
+    
+    gem install bundler
 
     bundle install
     

@@ -19,7 +19,7 @@ build:
     
     gem install bundler
 
-    bundle install
+    bundle install --without development test --path vendor/bundle
     
     rails assets:precompile
 

@@ -19,7 +19,7 @@ stack: alpine/3.17
 build:
   destination: '..'
   command: |
-    export RAILS_ENV=prod
+    export RAILS_ENV=production
 
     bundle config set --local path 'vendor/bundle'
     bundle config set --local without 'development test'

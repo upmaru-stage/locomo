@@ -80,7 +80,4 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: locomo_production
-  username: locomo
-  password: <%= ENV["LOCOMO_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>

@@ -1,0 +1,48 @@
+dependencies:
+  build:
+    - ruby
+  runtime:
+    - bash
+    - curl
+    - jq
+    - ca-certificates
+    - s6
+    - locomo-openrc
+
+stack: alpine/3.17
+
+build:
+  destination: '.'
+  command: |
+    export MIX_ENV=prod
+
+    bundle install
+    
+    rails assets:precompile
+
+run: 
+  name: rails
+  start: 
+    call: 'start'
+  stop:
+    call: 'stop'
+  command:
+    call: ''
+    variations:
+      migrate: db:migrate
+
+hook:
+  post-install: |
+    rc-update add locomo
+    rc-service locomo migrate
+
+  pre-upgrade: |
+    rc-service locomo stop
+
+  post-upgrade: |
+    rc-service locomo migrate
+    rc-service locomo start
+
+  post-deinstall: |
+    rc-service locomo stop
+    rc-update locomo rdio

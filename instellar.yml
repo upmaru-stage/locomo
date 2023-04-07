@@ -2,6 +2,7 @@ dependencies:
   build:
     - ruby
     - ruby-bundler
+    - ruby-dev
   runtime:
     - bash
     - curl
@@ -17,8 +18,11 @@ build:
   destination: '*'
   command: |
     export RAILS_ENV=prod
+
+    bundle config set --local path 'vendor/bundle'
+    bundle config set --local without 'development test'
     
-    bundle install --without development test --path vendor/bundle
+    bundle install
     
     rails assets:precompile
 

@@ -28,7 +28,7 @@ run:
   stop:
     call: 'stop'
   command:
-    call: ''
+    call: '--'
     variations:
       migrate: db:migrate
 

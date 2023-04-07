@@ -13,7 +13,7 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destination: '.'
+  destination: '**'
   command: |
     export MIX_ENV=prod
 

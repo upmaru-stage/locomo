@@ -25,7 +25,7 @@ build:
     
     bundle install
     
-    rails assets:precompile
+    bin/rails assets:precompile
 
 run: 
   name: locomo

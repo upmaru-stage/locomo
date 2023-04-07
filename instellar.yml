@@ -5,6 +5,8 @@ dependencies:
     - ruby-dev
     - ruby-tzinfo
     - libpq-dev
+    - libxslt-dev
+    - libxml2-dev
   runtime:
     - bash
     - curl

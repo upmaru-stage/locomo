@@ -13,9 +13,9 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destination: '**'
+  destination: 'app'
   command: |
-    export MIX_ENV=prod
+    export RAILS_ENV=prod
 
     bundle install
     

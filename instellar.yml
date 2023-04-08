@@ -33,22 +33,22 @@ build:
 
 run: 
   name: locomo
+  commands: 
+  - name: migrate
+    binary: rails
+    call: db:migrate
   services:
-    - name: web
-      binary: rails
-      start: 
-        call: server
-      stop:
-        kill: true
-        pid_path: tmp/pids/server.pid
-      command:
-        call: '--'
-        variations:
-          migrate: db:migrate
-    - name: worker
-      binary: bundle
-      start:
-        call: 'exec sidekiq -C config/sidekiq.yml'
+  - name: web
+    binary: rails
+    start: 
+      call: server
+    stop:
+      kill: true
+      pid_path: tmp/pids/server.pid
+  - name: worker
+    binary: bundle
+    start:
+      call: 'exec sidekiq -C config/sidekiq.yml'
 
 hook:
   post-install: |

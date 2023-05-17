@@ -18,7 +18,7 @@ dependencies:
     - libpq
     - locomo-openrc
 
-stack: alpine/3.17
+stack: alpine/3.18
 
 build:
   destinations: 

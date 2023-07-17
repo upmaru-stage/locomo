@@ -63,3 +63,18 @@ hook:
   post-deinstall: |
     rc-service locomo stop
     rc-update locomo rdio
+
+kits: 
+- name: web
+  description: "web service"
+  main: true
+  ports:
+  - name: web
+    target: 3000
+    main: true
+  variables:
+  - name: RAILS_ENV
+    value: production
+  - name: DATABASE_URL
+    driver: "database/postgresql"
+

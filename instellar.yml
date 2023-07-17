@@ -73,8 +73,8 @@ kits:
     target: 3000
     main: true
   variables:
-  - name: RAILS_ENV
-    value: production
-  - name: DATABASE_URL
+  - key: RAILS_ENV
+    default_value: production
+  - key: DATABASE_URL
     driver: "database/postgresql"
 

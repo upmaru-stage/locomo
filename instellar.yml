@@ -77,4 +77,8 @@ kits:
     default_value: production
   - key: DATABASE_URL
     driver: "database/postgresql"
+  - key: SECRET_KEY_BASE
+    driver: "generic/secret"
+    driver_options:
+      length: 128
 

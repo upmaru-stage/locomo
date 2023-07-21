@@ -1,3 +1,3 @@
 # README
 
-Basic CMS
+Basic CMS powered by Spina

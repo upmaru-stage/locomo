@@ -1,3 +1,5 @@
-# README
+# Locomo Demo
 
-Basic CMS powered by Spina. Demo project for instellar.app
+Demo project for instellar.app
+Basic CMS powered by Spina. 
+

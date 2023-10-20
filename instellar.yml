@@ -40,6 +40,10 @@ run:
     - binary: rails
       call: console
       name: console
+    - binary: tail
+      path: /usr/bin
+      name: logs
+      call: -f -n 200 /var/log/locomo/current
   name: locomo
   services:
     - binary: rails

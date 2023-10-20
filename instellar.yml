@@ -37,6 +37,9 @@ run:
     - binary: rails
       call: db:migrate
       name: migrate
+    - binary: rails
+      call: console
+      name: console
   name: locomo
   services:
     - binary: rails

@@ -22,7 +22,6 @@ jobs:
         uses: jirutka/setup-alpine@v1
         with:
           branch: v3.18
-          arch: aarch64
           packages: |
             zip 
             tar 

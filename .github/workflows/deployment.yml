@@ -33,8 +33,8 @@ jobs:
 
       - name: 'Setup PAKman'
         run: |
-          adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder
-          echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+          sudo adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder
+          sudo echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
           export MIX_ENV=prod
 
           mix local.rebar --force

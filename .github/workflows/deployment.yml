@@ -18,32 +18,48 @@ jobs:
           ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
 
-      - name: 'Pakman'
-        uses: upmaru/pakman@develop
+      - name: 'Setup Alpine'
+        uses: jirutka/setup-alpine@v1
         with:
-          command: 'bootstrap'
-        env:
-          ABUILD_PRIVATE_KEY: ${{secrets.ABUILD_PRIVATE_KEY}}
-          ABUILD_PUBLIC_KEY: ${{secrets.ABUILD_PUBLIC_KEY}}
+          branch: v3.18
+          packages: |
+            zip 
+            tar 
+            sudo 
+            alpine-sdk 
+            coreutils 
+            cmake
+            elixir
 
-      - name: 'Build APK'
-        uses: upmaru/pakman@develop
-        with:
-          entrypoint: /var/lib/pakman/bin/build.sh
+      - run: cat /etc/alpine-release
+        shell: alpine.sh {0}
 
-      - name: 'Archive'
-        uses: upmaru/pakman@develop
-        with:
-          entrypoint: /var/lib/pakman/bin/archive.sh
+      # - name: 'Pakman'
+      #   uses: upmaru/pakman@develop
+      #   with:
+      #     command: 'bootstrap'
+      #   env:
+      #     ABUILD_PRIVATE_KEY: ${{secrets.ABUILD_PRIVATE_KEY}}
+      #     ABUILD_PUBLIC_KEY: ${{secrets.ABUILD_PUBLIC_KEY}}
 
-      - name: 'Create Deployment'
-        uses: upmaru/pakman@develop
-        with:
-          command: 'create_deployment'
-          archive: 'packages.zip'
-        env:
-          WORKFLOW_REF: ${{ github.ref }}
-          WORKFLOW_SHA: ${{ github.sha }}
-          INSTELLAR_ENDPOINT: https://sandbox.opsmaru.dev
-          INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
-          INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}
+      # - name: 'Build APK'
+      #   uses: upmaru/pakman@develop
+      #   with:
+      #     entrypoint: /var/lib/pakman/bin/build.sh
+
+      # - name: 'Archive'
+      #   uses: upmaru/pakman@develop
+      #   with:
+      #     entrypoint: /var/lib/pakman/bin/archive.sh
+
+      # - name: 'Create Deployment'
+      #   uses: upmaru/pakman@develop
+      #   with:
+      #     command: 'create_deployment'
+      #     archive: 'packages.zip'
+      #   env:
+      #     WORKFLOW_REF: ${{ github.ref }}
+      #     WORKFLOW_SHA: ${{ github.sha }}
+      #     INSTELLAR_ENDPOINT: https://sandbox.opsmaru.dev
+      #     INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
+      #     INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}

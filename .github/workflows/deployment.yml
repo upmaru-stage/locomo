@@ -31,7 +31,16 @@ jobs:
             cmake
             elixir
 
-      - run: cat /etc/alpine-release
+      - name: 'Setup PAKman'
+        run: |
+          adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder
+          echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+          export MIX_ENV=prod
+
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get --only prod
+          mix escript.build
         shell: alpine.sh {0}
 
       # - name: 'Pakman'

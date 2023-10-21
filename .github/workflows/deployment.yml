@@ -22,6 +22,7 @@ jobs:
         uses: jirutka/setup-alpine@v1
         with:
           branch: v3.18
+          arch: aarch64
           packages: |
             zip 
             tar 
@@ -33,8 +34,6 @@ jobs:
 
       - name: 'Setup PAKman'
         run: |
-          # sudo adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder
-          # sudo echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/root
           export MIX_ENV=prod
 
           mix local.rebar --force

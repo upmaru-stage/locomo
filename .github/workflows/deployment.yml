@@ -33,15 +33,13 @@ jobs:
 
       - name: 'Setup PAKman'
         run: |
-          echo $HOME
           # sudo adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder
           # sudo echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/root
           export MIX_ENV=prod
 
           mix local.rebar --force
           mix local.hex --force
-          mix deps.get --only prod
-          mix escript.build
+          mix escript.install github upmaru/pakman
         shell: alpine.sh {0}
 
       # - name: 'Pakman'

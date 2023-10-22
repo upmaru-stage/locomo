@@ -40,6 +40,8 @@ jobs:
           mix escript.install github upmaru/pakman branch feature/chroot-alpine --force
 
           ~/.mix/escripts/pakman --command bootstrap
+
+          ls -la
         shell: alpine.sh {0}
         env:
           MIX_ENV: prod

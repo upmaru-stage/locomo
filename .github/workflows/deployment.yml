@@ -19,32 +19,14 @@ jobs:
           fetch-depth: 0
 
       - name: 'Setup Alpine'
-        uses: zacksiri/setup-alpine@master
+        uses: upmaru/pakman@feature/chroot-alpine
         with:
-          branch: v3.18
-          packages: |
-            zip
-            tar
-            sudo
-            alpine-sdk
-            coreutils
-            cmake
-            elixir
+          image: v3.18
 
-      - name: 'Setup Build Environment'
-        run: |
-          sudo addgroup runner abuild
-
-          mkdir -p ~/packages/upmaru-stage
-
-          mix local.rebar --force
-          mix local.hex --force
-          mix escript.install github upmaru/pakman branch feature/chroot-alpine --force
-
-          ~/.mix/escripts/pakman --command bootstrap
+      - name: Bootstrap Configuration
+        run: ~/.mix/escripts/pakman --command bootstrap
         shell: alpine.sh {0}
         env:
-          MIX_ENV: prod
           ABUILD_PRIVATE_KEY: ${{secrets.ABUILD_PRIVATE_KEY}}
           ABUILD_PUBLIC_KEY: ${{secrets.ABUILD_PUBLIC_KEY}}
 

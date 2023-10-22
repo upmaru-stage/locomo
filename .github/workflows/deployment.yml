@@ -35,6 +35,8 @@ jobs:
         run: |
           sudo addgroup runner abuild
 
+          mkdir -p ~/packages/upmaru-stage
+
           mix local.rebar --force
           mix local.hex --force
           mix escript.install github upmaru/pakman branch feature/chroot-alpine --force
@@ -52,6 +54,11 @@ jobs:
 
           abuild snapshot
           abuild -r
+        shell: alpine.sh {0}
+
+      - name: 'Archive Package'
+        run: |
+          sudo zip -r packages.zip "$HOME"/packages
         shell: alpine.sh {0}
 
       # - name: 'Pakman'

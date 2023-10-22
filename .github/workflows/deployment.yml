@@ -21,7 +21,7 @@ jobs:
       - name: 'Setup PAKman'
         uses: upmaru/pakman@feature/chroot-alpine
         with:
-          image: v3.18
+          alpine: v3.18
 
       - name: Bootstrap Configuration
         run: ~/.mix/escripts/pakman --command bootstrap

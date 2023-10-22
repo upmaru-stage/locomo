@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: 'Setup Alpine'
-        uses: zacksiri/setup-alpine
+        uses: zacksiri/setup-alpine@master
         with:
           branch: v3.18
           packages: |

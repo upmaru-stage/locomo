@@ -19,10 +19,11 @@ jobs:
           fetch-depth: 0
 
       - name: 'Setup Alpine'
-        uses: jirutka/setup-alpine@v1
+        uses: zacksiri/setup-alpine@master
         with:
           branch: v3.18
           arch: aarch64
+          qemu-repo: edge
           packages: |
             zip 
             tar 

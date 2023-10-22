@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: 'Setup Alpine'
-        uses: zacksiri/setup-alpine@master
+        uses: zacksiri/setup-alpine
         with:
           branch: v3.18
           packages: |
@@ -39,7 +39,7 @@ jobs:
 
           mix local.rebar --force
           mix local.hex --force
-          mix escript.install github upmaru/pakman --force
+          mix escript.install github upmaru/pakman branch feature/chroot-alpine --force
 
           ~/.mix/escripts/pakman bootstrap
         shell: alpine.sh {0}

@@ -41,9 +41,7 @@ jobs:
           mix local.hex --force
           mix escript.install github upmaru/pakman branch feature/chroot-alpine --force
 
-          export PATH="~/.mix/escripts:$PATH"
-
-          pakman --command bootstrap
+          ~/.mix/escripts/pakman --command bootstrap
         shell: alpine.sh {0}
 
       # - name: 'Pakman'

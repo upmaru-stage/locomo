@@ -18,7 +18,7 @@ jobs:
           ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
 
-      - name: 'Setup Alpine'
+      - name: 'Setup PAKman'
         uses: upmaru/pakman@feature/chroot-alpine
         with:
           image: v3.18

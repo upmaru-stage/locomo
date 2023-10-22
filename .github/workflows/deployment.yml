@@ -33,22 +33,25 @@ jobs:
 
       - name: 'Setup Build Environment'
         run: |
-          addgroup runner abuild
+          sudo addgroup runner abuild
 
           mix local.rebar --force
           mix local.hex --force
           mix escript.install github upmaru/pakman branch feature/chroot-alpine --force
+
           ~/.mix/escripts/pakman --command bootstrap
-
-          cd "$GITHUB_WORKSPACE"/.apk/"$GITHUB_REPOSITORY" || exit
-
-          abuild snapshot
-          abuild -r
         shell: alpine.sh {0}
         env:
           MIX_ENV: prod
           ABUILD_PRIVATE_KEY: ${{secrets.ABUILD_PRIVATE_KEY}}
           ABUILD_PUBLIC_KEY: ${{secrets.ABUILD_PUBLIC_KEY}}
+
+      - name: 'Build Package'
+        run: |
+          cd "$GITHUB_WORKSPACE"/.apk/"$GITHUB_REPOSITORY" || exit
+
+          abuild snapshot
+          abuild -r
 
       # - name: 'Pakman'
       #   uses: upmaru/pakman@develop

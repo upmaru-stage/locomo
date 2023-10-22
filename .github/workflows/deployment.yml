@@ -33,7 +33,7 @@ jobs:
 
       - name: 'Setup Build Environment'
         run: |
-          sudo usermod -a -G abuild runner
+          sudo addgroup runner abuild
 
           export MIX_ENV=prod
 

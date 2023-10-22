@@ -33,7 +33,7 @@ jobs:
 
       - name: 'Setup Build Environment'
         run: |
-          echo "~/.mix/escripts" >> $GITHUB_PATH
+          echo "~/.mix/escripts:$PATH" >> $GITHUB_PATH
           sudo addgroup runner abuild
 
           mix local.rebar --force

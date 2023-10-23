@@ -24,7 +24,9 @@ jobs:
           alpine: v3.18
 
       - name: Bootstrap Configuration
-        run: pakman --command bootstrap
+        run: |
+          echo $PATH
+          pakman --command bootstrap
         shell: alpine.sh {0}
         env:
           ABUILD_PRIVATE_KEY: ${{secrets.ABUILD_PRIVATE_KEY}}

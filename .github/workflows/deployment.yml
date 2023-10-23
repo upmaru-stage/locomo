@@ -25,8 +25,7 @@ jobs:
 
       - name: Bootstrap Configuration
         run: |
-          echo $PATH
-          pakman --command bootstrap
+          pakman bootstrap
         shell: alpine.sh {0}
         env:
           ABUILD_PRIVATE_KEY: ${{secrets.ABUILD_PRIVATE_KEY}}
@@ -45,7 +44,7 @@ jobs:
         shell: alpine.sh {0}
 
       - name: 'Create Deployment'
-        run: pakman --command create_deployment --archive packages.zip
+        run: pakman deploy --archive packages.zip
         shell: alpine.sh {0}
         env:
           WORKFLOW_REF: ${{ github.ref }}

@@ -56,14 +56,19 @@ jobs:
           path: /home/runner/packages
 
 
-  # deploy:
-  #   name: Deploy
-  #   runs-on: ubuntu-latest
-  #   steps: 
-      
-      # - name: 'Archive Package'
-      #   run: sudo zip -r packages.zip "$HOME"/packages
-      #   shell: alpine.sh {0}
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with: 
+          path: /home/runner/packages
+
+      - name: Archive Package
+        run: sudo zip -r packages.zip "$HOME"/packages
+        shell: alpine.sh {0}
 
       # - name: 'Create Deployment'
       #   run: pakman deploy --archive packages.zip

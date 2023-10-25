@@ -62,14 +62,11 @@ jobs:
       - name: Merge Artifact
         run: |
           cp -R /home/runner/artifacts/X64/. /home/runner/packages/
-          sudo zip -r packages.zip "$HOME"/packages
+          sudo zip -r /home/runner/packages.zip "$HOME"/packages
         shell: alpine.sh {0}
 
       - name: Push
-        run: |
-          ls -R
-          pwd
-          pakman push
+        run: pakman push
         shell: alpine.sh {0}
         env:
           WORKFLOW_REF: ${{ github.ref }}

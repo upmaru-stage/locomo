@@ -39,16 +39,6 @@ jobs:
           abuild -r
         shell: alpine.sh {0}
 
-      - name: Push
-        run: pakman push
-        shell: alpine.sh {0}
-        env:
-          WORKFLOW_REF: ${{ github.ref }}
-          WORKFLOW_SHA: ${{ github.sha }}
-          INSTELLAR_ENDPOINT: https://sandbox.opsmaru.dev
-          INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
-          INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -61,8 +51,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v3
-
       - uses: actions/download-artifact@v3
         with: 
           path: /home/runner/packages
@@ -73,8 +61,21 @@ jobs:
           alpine: v3.18
 
       - name: Archive Package
-        run: sudo zip -r packages.zip "$HOME"/packages
+        run: |
+          sudo zip -r packages.zip "$HOME"/packages
+          ls -R
         shell: alpine.sh {0}
+
+      - name: Push
+        run: pakman push
+        shell: alpine.sh {0}
+        env:
+          WORKFLOW_REF: ${{ github.ref }}
+          WORKFLOW_SHA: ${{ github.sha }}
+          INSTELLAR_ENDPOINT: https://sandbox.opsmaru.dev
+          INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
+          INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}
+
 
       # - name: 'Create Deployment'
       #   run: pakman deploy --archive packages.zip

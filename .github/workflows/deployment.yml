@@ -61,7 +61,7 @@ jobs:
 
       - name: Merge Artifact
         run: |
-          cp -R /home/runner/artifacts/X64-artifact/. /home/runner/packages/
+          cp -R /home/runner/artifacts/X64/. /home/runner/packages/
           sudo zip -r packages.zip "$HOME"/packages
           ls -R
         shell: alpine.sh {0}

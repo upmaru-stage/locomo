@@ -42,7 +42,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ runner.arch }}-packages
+          name: ${{ runner.arch }}-artifact
           path: /home/runner/packages
 
 
@@ -53,15 +53,16 @@ jobs:
     steps: 
       - uses: actions/download-artifact@v3
         with: 
-          path: /home/runner/packages
+          path: /home/runner
 
       - name: Setup Pakman
         uses: upmaru/pakman@feature/chroot-alpine
         with:
           alpine: v3.18
 
-      - name: Archive Package
+      - name: Merge Artifact
         run: |
+          cp -R /home/runner/X64-artifact/. /home/runner/packages/
           sudo zip -r packages.zip "$HOME"/packages
           ls -R
         shell: alpine.sh {0}

@@ -50,6 +50,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - uses: actions/download-artifact@v3
         with: 
           path: /home/runner/artifacts
@@ -74,14 +77,3 @@ jobs:
           INSTELLAR_ENDPOINT: https://sandbox.opsmaru.dev
           INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
           INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}
-
-
-      # - name: 'Create Deployment'
-      #   run: pakman deploy --archive packages.zip
-      #   shell: alpine.sh {0}
-      #   env:
-      #     WORKFLOW_REF: ${{ github.ref }}
-      #     WORKFLOW_SHA: ${{ github.sha }}
-      #     INSTELLAR_ENDPOINT: https://sandbox.opsmaru.dev
-      #     INSTELLAR_PACKAGE_TOKEN: ${{secrets.INSTELLAR_PACKAGE_TOKEN}}
-      #     INSTELLAR_AUTH_TOKEN: ${{secrets.INSTELLAR_AUTH_TOKEN}}

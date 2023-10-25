@@ -63,11 +63,13 @@ jobs:
         run: |
           cp -R /home/runner/artifacts/X64/. /home/runner/packages/
           sudo zip -r packages.zip "$HOME"/packages
-          ls -R
         shell: alpine.sh {0}
 
       - name: Push
-        run: pakman push
+        run: |
+          ls -R
+          pwd
+          pakman push
         shell: alpine.sh {0}
         env:
           WORKFLOW_REF: ${{ github.ref }}

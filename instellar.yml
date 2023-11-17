@@ -79,6 +79,8 @@ kits:
         key: DATABASE_URL
       - default_value: '1'
         key: RAILS_SERVE_STATIC_FILES
+      - default_value: '1'
+        key: RAILS_LOG_TO_STDOUT
       - driver: generic/secret
         driver_options:
           length: 128

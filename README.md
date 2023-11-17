@@ -1,4 +1,4 @@
 # Locomo Demo
 
 Demo project for instellar.app
-Basic CMS powered by Spina. 
+Basic CMS powered by Spina.

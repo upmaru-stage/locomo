@@ -50,6 +50,10 @@ run:
       name: web
       start:
         call: server
+    - binary: bundle
+      name: worker
+      start:
+        call: exec sidekiq -C config/sidekiq.yml
 
 hook:
   post-deinstall: |
@@ -81,7 +85,33 @@ kits:
         key: RAILS_SERVE_STATIC_FILES
       - default_value: '1'
         key: RAILS_LOG_TO_STDOUT
+      - driver: bucket/aws-s3
+        driver_options:
+          cors: |
+            [
+              {
+                "AllowedHeaders": [
+                  "Content-Type",
+                  "Content-MD5",
+                  "Content-Disposition"
+                ],
+                "AllowedMethods": [
+                  "PUT"
+                ],
+                "AllowedOrigins": [
+                  {{- installation.origins -}}
+                ],
+                "MaxAgeSeconds": 3600
+              }
+            ]
+        key: AWS_S3
       - driver: generic/secret
         driver_options:
           length: 128
         key: SECRET_KEY_BASE
+    forks:
+      - description: sidekiq worker
+        name: worker
+        variables:
+          - key: SERVICE_MODE
+            default_value: worker
